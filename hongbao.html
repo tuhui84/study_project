@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <style>
+         @keyframes redImg {
+                0% {
+                    top:-100px;
+                }
+                100% {
+                    top: 100%;
+                }
+            }
+            .redBox {
+                position: absolute;
+                z-index: 10000;
+                animation: redImg 3s infinite linear;
+                /* -webkit-animation: redImg 3s infinite linear;
+                -moz-animation: redImg 3s infinite linear;
+                -ms-animation: redImg 3s infinite linear;
+                -o-animation: redImg 3s infinite linear; */
+            }
+
+            .redBox {
+                position: fixed;
+            }
+            .redBox img{
+                display: block;width: 1rem;height: 1.3rem;
+                width: 80px;
+                height: 80px;
+            }
+    </style>
+    <div id="redzone">
+
+    </div>
+    <script>
+        function creatEle(left,height){
+            var div = document.createElement("div");
+            var img = document.createElement("img");
+            div.appendChild(img);
+            img.classList.add('roll')
+            img.src = './img/cu.jpg'
+            console.dir(img)
+            div.style.left = left + "px";
+            div.style.top = height + "px";
+            div.classList.add("redBox");
+            document.getElementById("redzone").appendChild(div);
+                setTimeout(function() {
+                    document.getElementById("redzone").removeChild(div);
+                }, 3000);
+        }
+        creatEle(1, 2);
+        setInterval(function(){
+            var left = Math.random() * document.body.scrollWidth;
+            console.log(document.body.scrollWidth)
+            var height = (Math.random() * document.body.scrollHeight);
+            console.log(height)
+            creatEle(left, height);
+        }, 100);
+    </script>
+</body>
+</html>

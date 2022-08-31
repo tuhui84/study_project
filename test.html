@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- <script src="./test_project//src//util/cnblogs.js"></script> -->
+    <title>Document</title>
+    <script
+      src="https://eggrj.oss-cn-hangzhou.aliyuncs.com/jsFiles/axios.min.js"
+      type="text/javascript"
+      charset="utf-8"
+    ></script>
+  </head>
+  <body>
+    <!-- <div class="check">
+        <input type="checkbox">
+    </div> -->
+    <canvas id="ca" width="300" height="300" style=""></canvas>
+    <style>
+      /*
+        修改checkbox样式
+        边框在before中修改
+         */
+      input[type="checkbox"] {
+        width: 20px;
+        height: 20px;
+        display: inline-block;
+        text-align: center;
+        vertical-align: middle;
+        line-height: 18px;
+        margin-right: 10px;
+        position: relative;
+      }
+
+      input[type="checkbox"]::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        background: #fff;
+        width: 100%;
+        height: 100%;
+        border: 1px solid #d9d9d9;
+        border-radius: 4px;
+      }
+
+      input[type="checkbox"]:checked::before {
+        content: "\27BD";
+        background-color: #fff;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        border: 1px solid #7d7d7d;
+        border-radius: 4px;
+        color: red;
+        font-size: 18px;
+        font-weight: bold;
+      }
+      @import url("./keyframs.css");
+      .transitionBox {
+        width: 50px;
+        height: 50px;
+        background-color: rgba(146, 136, 136, 0.6);
+      }
+      .transitionBox:hover {
+        width: 50px;
+        height: 100px;
+        transition: 1s height cubic-bezier(0.83, 0.97, 0.05, 1.44),
+          1s 0.3s width;
+      }
+      .animationBox {
+        width: 100px;
+        height: 100px;
+        background-color: #000;
+        border-radius: 50%;
+      }
+      .animationBox:hover {
+        animation: 2s animationOne infinite reverse;
+      }
+    </style>
+    <!-- <div class="test">
+        <div class="transitionBox"></div>
+        <div class="animationBox"></div>
+    </div> -->
+  </body>
+  <script>
+    let ggid = "http://eggi.cn/÷f5LZ001";
+    let ww = "";
+    if (ggid.indexOf("÷") != -1) {
+      ww = ggid.split("÷")[1];
+    }
+    console.log(ww);
+    /** @type {HTMLCanvasElement} */
+    let c = document.getElementById("ca");
+    let ctx = c.getContext("2d");
+    // ctx.rect(10,10,100,100);
+    // ctx.fillStyle = 'red';
+    // ctx.fill()
+    // ctx.beginPath()
+    // ctx.moveTo(10,10);
+    // ctx.lineTo(10,50);
+    // ctx.lineTo(30,80);
+    // ctx.closePath()
+    // ctx.strokeStyle = "red"
+    // ctx.stroke()
+
+    // ctx.beginPath()
+    // ctx.moveTo(0,20);
+    // ctx.lineTo(30,30);
+    // ctx.strokeStyle = "green";
+    // ctx.fillRect(10,10,100,200)
+    // ctx.clip();  //切割
+    // ctx.fillStyle = "red"
+    // ctx.fillRect(10,10,10,10)
+    // ctx.stroke()
+    // ctx.beginPath()
+    // ctx.arc(150,150,50,Math.PI / 4,2*Math.PI)
+    // ctx.fill()
+    ctx.beginPath();
+    ctx.beginPath();
+    ctx.moveTo(20, 20); // 创建开始点
+    ctx.lineTo(100, 20); // 创建水平线
+    ctx.arcTo(150, 20, 150, 70, 50); // 创建弧
+    ctx.lineTo(150, 120); // 创建垂直线
+    ctx.stroke();
+
+    // var a = [
+    //     {name:1},
+    //     {name:2}
+    // ]
+    // var b = {name:1}
+    // console.log(a.includes(b))
+    // let a1 = ['q','r']
+    // console.log(a1.keys().next())
+
+    // let obj = {};
+    // let name = '';
+    // Object.defineProperty(obj,"name", {
+    //     set:function (value) {
+    //         name = value;
+    //         console.log(value)
+    //     },
+    //     get: function()  {
+    //         return "aaa" + name
+    //     }
+    // })
+    // obj.name = "2222"
+    // console.log(obj.name)
+
+    // var a = [
+    //     {
+    //         "id":5,
+    //         "pid":2,
+    //         "categoryName":"搜索行为",
+    //     },
+    //     {
+    //         "id":6,
+    //         "pid":3,
+    //         "categoryName":"购买力",
+    //     }
+    // ]
+    // a.map(item => {
+    //     item.parent = item
+    //     return item
+    // })
+    // let b = JSON.stringify(a)
+    // console.log(b)
+    // function m (a,b){
+    //     a.bb = b;
+    //     b.aa = a
+    //     return {
+    //         A:a,
+    //         B:b
+    //     }
+    // }
+    // let f = m({
+    //     c1:1
+    // },{
+    //     c2:2
+    // })
+    // let id  = Symbol.for('id')
+    // let user = {
+    //     a:1
+    // }
+    // user[id] = 2
+    // console.log(user)
+    // for(let i in user){
+    //     console.log(i)
+    // }
+    // function  aa() {
+    //     let is = Symbol.for("id")
+    //     console.log(s == is)
+    //     return true
+    // }
+    // aa()
+    // let a = new Date();
+    // let b = new Date(2018,11,7);
+    // // let c = {name: 1}
+    // c[Symbol.toPrimitive] = function(hint){
+    //     console.log(hint)
+    // }
+    // let user = {
+    //     name: "John",
+    //     money: 1000,
+
+    //     [Symbol.toPrimitive](hint) {
+    //         // alert(`hint: ${hint}`);
+    //         return hint == "string" ? `{name: "${this.name}"}` : this.money;
+    //     }
+    // };
+    // alert(user); // hint: string -> {name: "John"}
+    // alert(+user); // hint: number -> 1000
+    // alert(user + 500); // hint: default -> 1500
+    // let a = function(){
+
+    // }
+    // console.log( a instanceof Object)
+    // let a = 1e9
+    // let b = new String(11)
+    // console.log("\u{1F60E}")
+    // console.log( "\u00A9" ); // ©版权符
+    // function sumInput() {
+
+    //     let numbers = [];
+
+    //     while (true) {
+
+    //         let value = prompt("A number please?", 0);
+
+    //         if (value === "" || value === null || !isFinite(value)) break;
+
+    //         numbers.push(+value);
+    //     }
+
+    //     let sum = 0;
+    //     for (let number of numbers) {
+    //         sum += number;
+    //     }
+    //     return sum;
+    // }
+
+    // alert( sumInput() );
+    let arr = [1, 2, 15];
+    let newA = arr.sort((a, b) => a - b);
+    console.log(newA);
+    function pp() {
+      this.name = "aa";
+      this.fun = () => {
+        console.log(123);
+      };
+      this.aa = {
+        name: 1,
+      };
+    }
+    pp.prototype = {
+      tt: "不是",
+    };
+    let tes = new pp();
+    // enumerable 是否可枚举
+    Object.defineProperty(tes, "sex", {
+      value: "ttttt",
+      enumerable: false,
+    });
+    // JSON.stringify 只能读取对象中的可枚举属性
+    console.log(JSON.stringify(tes));
+    // (function () {
+    //   let n = 10000;
+    //   for (let i = 0; i < n; i++) {
+    //     axios
+    //       .get("https://beta.eggi.cn/erp/get_supplier_list", {
+    //         params: {},
+    //       })
+    //       .then((res) => {
+    //         console.log(res);
+    //       });
+    //   }
+    // })();
+  </script>
+</html>

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <style>
+      .content {
+        display: flex;
+      }
+      .box1 {
+        float: left;
+        width: 100px;
+        height: 100px;
+        border: 1px solid;
+      }
+    </style>
+    <div class="content">
+      <div class="box1"></div>
+    </div>
+    <script>
+      //   var namea = "test";
+      //   (function () {
+      //     console.log(namea);
+      //     if (typeof namea == "undefined") {
+      //       console.log(111);
+      //     }
+      //   })();
+      //   function atest(val) {
+      //     switch (val) {
+      //       case "A":
+      //         console.log(111);
+      //         break;
+      //       default:
+      //         console.log(222);
+      //         break;
+      //     }
+      //     console.log(val == "A");
+      //   }
+      //   atest(new String("A"));
+      //   console.log(["1", "2", "3"].map(parseInt));
+      //   console.log(parseInt(3, 2));
+      const simplePoller = function (queryFn, callback) {
+        if (typeof queryFn != "function" && typeof callback != "function") {
+          return;
+        }
+        let waitTime = 1;
+        if (waitTime >= 3.75) {
+          waitTime = waitTime * 1.5;
+        } else {
+          queryFn(waitTime);
+        }
+      };
+      const queryFn = function (time) {
+        setTimeout(() => {}, time * 1000);
+        if (time >= 3.375) {
+          return true;
+        } else {
+          return false;
+        }
+      };
+      const tempFun = function () {
+        console.log(simplePoller.waitTime);
+      };
+      simplePoller(queryFn, tempFun);
+    </script>
+  </body>
+</html>

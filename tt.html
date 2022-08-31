@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <style>
+        .box{
+            display: flex;
+        }
+        .box > div{
+            width: 200px;
+            height: 100px;
+            text-align: center;
+            line-height: 100px;
+            font-weight: bold;
+        }
+        .center{
+            order: 1;
+            background-color: red;
+        }
+        .left{
+            background-color: green;
+        }
+        .right{
+            order: 2;
+            background-color: yellow;
+        }
+        .content{
+            width: 1440px;
+            margin: 0 auto;
+            display: flex;
+
+        }
+        .content div{
+            height: 200px;
+            border: 1px solid red;
+        }
+        .c_left{
+            width: 200px;
+        }
+        .c_center{
+            overflow: hidden;
+            flex: 1;
+        }
+        .c_right{
+            width: 200px;
+        }
+    </style>
+    <button id="btn">1111</button>
+    <div class="box">
+        <div class="center">中间</div>
+        <div class="left">左边</div>
+        <div class="right">右边</div>
+    </div>
+    <div class="content">
+        <div class="c_left"></div>
+        <div class="c_center"></div>
+        <div class="c_right"></div>
+    </div>
+    <script>
+        // reduce 数组去重
+        let arr = [1,1,2,4,5,5]
+        let arr1 = arr.reduce((a,b) => {
+            return a.includes(b)?a : a.concat(b)
+        },[])
+        console.log(typeof [])
+        console.log(arr1)
+
+        var a = 10;
+        function fun() {
+            console.log(a)
+            var a = 11;
+            console.log(a)
+        }
+        fun()
+        let btn = document.getElementById('btn')
+        btn.onclick = () => {
+            location.href = 'https://webggtest.thinkerx.com/'
+        }
+        // window.onbeforeunload = function(){
+        //     return ('11111')
+        // }
+        // function pow(x, n){ 
+        //     return n == 1? x : x * pow(x, n - 1)
+        // }
+        // console.log(pow(2, 2))
+        // function sum(n){
+        //     return n == 1 ? 1 : n + sum(n - 1)
+        // }
+        // console.log(sum(10459))
+        // console.dir(Math.min)
+        
+        // function rest(...value){
+        //     let sum = 0;
+        //     for(let i of value){
+        //         sum += i
+        //     }
+        // }
+        
+        // let arrs = [1,2,4,5];
+        // for(let i in arrs){
+        //     console.log(i + '___' + arrs[i]  + typeof i)
+        // }
+        // let str = 'lesfosf'
+        // console.log(Array.from(str))
+        // console.log([...str])
+        // console.log({...str})
+
+        let range = {
+            from: 1,
+            to: 5
+        };
+        console.log(range)
+        // 1. for..of 调用首先会调用这个：
+        range[Symbol.iterator] = function() {
+        
+        // ……它返回迭代器对象（iterator object）：
+        // 2. 接下来，for..of 仅与此迭代器一起工作，要求它提供下一个值
+            return {
+                current: this.from,
+                last: this.to,      
+            
+                // 3. next() 在 for..of 的每一轮循环迭代中被调用
+                next() {
+                // 4. 它将会返回 {done:.., value :...} 格式的对象
+                if (this.current <= this.last) {
+                    return { done: false, value: this.current++ };
+                } else {
+                    return { done: true };
+                }
+                }
+            };
+        };
+        // // console.log(range)
+        // // 现在它可以运行了！
+        // for (let num of range) {
+        //     // console.log(num); // 1, 然后是 2, 3, 4, 5
+        // }
+        let obj = [1,2]
+        console.log(obj)
+        console.log(obj[Symbol.iterator]( "Symbol.iterator"))
+        let str = "Hello";
+        console.log(str[Symbol.iterator]( "Symbol.iterator"))
+        // 和 for..of 做相同的事
+        // for (let char of str) alert(char);
+        
+        let iterator = str[Symbol.iterator]( "Symbol.iterator");
+        
+        while (true) {
+            let result = iterator.next();
+            if (result.done) break;
+            console.log(result.value); // 一个接一个地输出字符
+        }
+        // let now = new Date()
+        // console.log(now)
+        // let b = 300 / 4 * 7
+        // console.log(b)
+        let aa = "T01:多层实木:18:1"
+        let index = aa.lastIndexOf(':')
+        console.log(index)
+        let c = aa.substring(0,index)
+        console.log(c,aa)
+    </script>
+</body>
+</html>

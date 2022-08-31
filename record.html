@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://eggrj.oss-cn-hangzhou.aliyuncs.com/jsFiles/vue.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="https://eggrj.oss-cn-hangzhou.aliyuncs.com/jsFiles/axios.min.js" type="text/javascript" charset="utf-8"></script>
+    <title>用户红包使用记录</title>
+</head>
+<body>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        .wapper{
+            width: 1440px;
+            margin: 0 auto;
+            height: auto;
+        }
+        .searchBox{
+            text-align: center;
+            padding: 20px 0;
+        }
+        .searchBox input {
+            height: 30px;
+            outline: none;
+        }
+        .contentBox{
+            display: flex;
+        }
+        .contentBox >div >p{
+            width: 100%;
+            text-align: center;
+            font-size: 24px;
+            font-weight: bold;
+            padding: 10px 0;
+        }
+        .userInfoBOx{
+            flex: 4;
+            border: 1px solid #ccc;
+            height: 800px;
+        }
+        .recordBox{
+            flex: 3;
+            border: 1px solid #ccc;
+            height: 800px;
+
+        }
+        .contentBox table{
+            width: 100%;
+        }
+        .contentBox table th,td{
+            text-align: center;
+            cursor: pointer;
+            padding: 5px 0;
+        }
+        .contentBox table tbody tr:hover{
+            color: green;
+            background-color: #ddd;
+        }
+        .button{
+            display: flex;
+            justify-content: flex-end;
+            padding: 10px;
+        }
+        .button button{
+            padding: 10px;
+            margin-right: 20px;
+        }
+    </style>
+    <div id="app">
+        <div class="wapper">
+            <div class="searchBox">
+                <input type="text" placeholder="输入用户名，按回车搜索" @keyup.enter="search" v-model='key'>
+            </div>
+            <div class="contentBox">
+                <div class="userInfoBOx">
+                    <p>用户列表</p>
+                    <div class="userlist">
+                        <table cellspacing='0'>
+                            <thead>
+                                <th>用户名</th>
+                                <th>红包金额</th>
+                                <th>余额</th>
+                            </thead>
+                            <tbody>
+                                <tr v-for='item in userList' :key='item.id' @click='getRecordList(item.id)'>
+                                    <td>{{item.name}}</td>
+                                    <td>{{item.amount}}</td>
+                                    <td>{{item.balance}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="button"><button @click='changePage(-1)'>上一页</button><button @click='changePage(1)'>下一页</button></div>
+                </div>
+                <div class="recordBox">
+                    <p>使用记录</p>
+                    <div class="recordlist">
+                        <table cellspacing='0'>
+                            <thead>
+                                <th>用途</th>
+                                <th>使用时间</th>
+                                <th>抵扣金额</th>
+                            </thead>
+                            <tbody>
+                                <tr v-for='(item,index) in recordList' :key='index'>
+                                    <td>{{item.type}}</td>
+                                    <td>{{item.creat_time}}</td>
+                                    <td>{{item.amount}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+<script>
+    var app = new Vue({
+        el:'#app',
+        data(){
+            return{
+                key:'',
+                userList:[],
+                recordList:[],
+                page:1
+            }
+        },
+        methods:{
+            changePage(value){
+                this.page += Number(value)
+                this.getUserList()
+            },
+            search(){
+                this.getUserList()
+            },
+            getUserList(){
+                console.log(this.page)
+                axios({
+                    method:'POST',
+                    url:'',
+                    data:{
+                        page:this.page,
+                        key:this.key
+                    }
+                }).then(res => {
+                    this.userList = res.data
+                })
+            },
+            getRecordList(id){
+                axios({
+                    method:'POST',
+                    url:'',
+                    data:{
+                        id,
+                    }
+                }).then(res => {
+                    this.recordList = res.data
+                })
+            },
+        },
+        mounted(){
+            this.getUserList()
+        }
+    })
+</script>
+</html>

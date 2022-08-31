@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="./fabric.js"></script>
+  </head>
+  <body>
+    <canvas id="myCanvas"></canvas>
+    <script>
+      let proxyValue = { name: 1, value: 2 };
+      let p = new Proxy(proxyValue, {
+        get(target, propKey) {
+          return target[propKey] + 1;
+        },
+        set(target, propKey, value) {
+          target[propKey] = target[propKey] + value;
+        },
+      });
+      p.name = 3;
+      console.log(p.name);
+      var xmlHttp = new XMLHttpRequest();
+      xmlHttp.onreadystatechange = callback1;
+      xmlHttp.open("get", "test1.json");
+      xmlHttp.send("methodName = GetAllComment&str1=str1&str2=str2");
+      function callback1() {
+        if (xmlHttp.readyState == 4)
+          if (xmlHttp.status == 200) {
+            var data = xmlHttp.responseText;
+            data = eval(data);
+            let canvas = new fabric.Canvas("myCanvas", {
+              width: 5000,
+              height: 3000,
+            });
+            console.log(canvas);
+            let path = [];
+            let startXs = [];
+            let startYs = [];
+            data.forEach((item) => {
+              startXs.push(item.X);
+              startYs.push(item.Y);
+            });
+            let startX = Math.min.apply(null, startXs);
+            let startY = Math.min.apply(null, startYs);
+            path = data.map((item) => {
+              return {
+                x: item.X / 100,
+                y: item.Y / 100,
+              };
+            });
+            console.log(path);
+            let Polygon = new fabric.Polygon(path, {
+              left: 1000,
+              top: 1000,
+              fill: "red",
+            });
+            canvas.add(Polygon);
+            // var c=document.getElementById("myCanvas");
+            // var ctx=c.getContext("2d");
+            // ctx.beginPath();
+
+            // let startXs = []
+            // let startYs = []
+
+            // ctx.strokeStyle="red";
+            // ctx.stroke();
+          }
+      }
+    </script>
+  </body>
+</html>

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+<body>
+    <ul id="myLinks">
+        <li id="goSomewhere">Go somewhere</li>
+        <li id="doSomething">Do something</li>
+        <li id="sayHi">Say hi</li>
+    </ul>
+    <script type="text/javascript">
+        // (function(){
+        //     var list = document.getElementById("myLinks");
+        //     EventUtil.addHandler(list, "click", function(event){
+        //         event = EventUtil.getEvent(event);
+        //         var target = EventUtil.getTarget(event);
+        //         switch(target.id){
+        //             case "doSomething":
+        //                 document.title = "I changed the document's title";
+        //                 break;
+        //             case "goSomewhere":
+        //                 location.href = "http://www.wrox.com";
+        //                 break;
+        //             case "sayHi":
+        //                 alert("hi");
+        //                 break;
+        //         }
+        //     });
+    
+        // })();
+        let test = {flag: false};
+        let a = !!test.flag;
+        let b = test.flag && false;
+        console.log(a,b)
+        var age = 100
+    function howOldAreYou() {
+    //   console.log(age)
+    //   let age = 200
+    }
+    howOldAreYou()
+
+    function fn(){
+        this.name = '123'
+        return function a(){
+            this.name = '444'
+            console.log(this.name)
+        }
+    }
+    let a1 = new fn()
+    let undefined = aaa;
+    console.log(undefined)
+    </script>
+</body>
+</html>
